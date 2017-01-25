@@ -1,0 +1,31 @@
+{
+  "name": "react-lab",
+  "version": "1.0.0",
+  "description": "Practica didáctica usando react y redux.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sharmaz/React-Lab.git"
+  },
+  "author": "Ivan Robles <irae45@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sharmaz/React-Lab/issues"
+  },
+  "homepage": "https://github.com/Sharmaz/React-Lab#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-latest-minimal": "^1.1.2",
+    "babel-preset-react": "^6.22.0",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.14.0"
+  }
+}
