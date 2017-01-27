@@ -1,3 +1,4 @@
 node_modules
 *.log
 built/server/index.js
+built/statics/app.js
