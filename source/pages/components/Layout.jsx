@@ -13,7 +13,7 @@ function Layout(props) {
         dangerouslySetInnerHTML={{
           __html: props.content,
         }} ></div>
-        <script src="http://localhost:3001"></script>
+        <script src="http://localhost:3001/app.js"></script>
       </body>
     </html>
   )

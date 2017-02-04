@@ -4,7 +4,8 @@
   "description": "Practica didáctica usando react y redux.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bff": "node ./built/server/index.js" ,
+    "sfs": "serve ./built/statics --port 3001 --cache 0"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "babel-preset-latest-minimal": "^1.1.2",
     "babel-preset-react": "^6.22.0",
     "json-loader": "^0.5.4",
+    "serve": "^2.4.4",
     "webpack": "^1.14.0"
   }
 }
