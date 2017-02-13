@@ -8,11 +8,14 @@ import Error404 from './Error404.jsx'
 import Home from './Home.jsx'
 import Post from './Post.jsx'
 import Profile from './Profile.jsx'
+import Header from '../../shared/components/Header.jsx'
 
 
 function Pages() {
   return (
     <main role="aplication">
+      <Header/>
+
       <Match
         pattern="/"
         exactly
