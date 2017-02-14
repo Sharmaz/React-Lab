@@ -1,20 +1,19 @@
-import React from 'react'
+import React from 'react';
 import {
   Match,
   Miss,
-  Link
-} from 'react-router'
-import Error404 from './Error404.jsx'
-import Home from './Home.jsx'
-import Post from './Post.jsx'
-import Profile from './Profile.jsx'
-import Header from '../../shared/components/Header.jsx'
+} from 'react-router';
+import Error404 from './Error404';
+import Home from './Home';
+import Post from './Post';
+import Profile from './Profile';
+import Header from '../../shared/components/Header';
 
 
 function Pages() {
   return (
-    <main role="aplication">
-      <Header/>
+    <main role="application">
+      <Header />
 
       <Match
         pattern="/"
@@ -33,7 +32,7 @@ function Pages() {
       />
       <Miss component={Error404} />
     </main>
-    )
+  );
 }
 
-export default Pages
+export default Pages;

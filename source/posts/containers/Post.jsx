@@ -1,40 +1,44 @@
-import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
-import api from '../../api.js'
-import styles from './Post.css'
+import api from '../../api';
+import styles from './Post.css';
 
 class Post extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       loading: true,
-      user: props.user || null,
-      comments: props.comments || null
-    }
+      user: props.user || null,
+      comments: props.comments || null,
+    };
   }
 
-  async componentDidMount() {
-    if(!!this.state.user && !!this.state.comments) {
+  componentDidMount() {
+    this.initialFetch();
+  }
+
+  async initialFetch() {
+    if (!!this.state.user && !!this.state.comments) {
       return this.setState({
-        loading: false
-      })
+        loading: false,
+      });
     }
 
     const [
       user,
-      comments
+      comments,
     ] = await Promise.all([
       !this.state.user ? api.users.getSingle(this.props.userId) : Promise.resolve(null),
-      !this.state.comments ? api.posts.getComments(this.props.id) : Promise.resolve(null)
-    ])
+      !this.state.comments ? api.posts.getComments(this.props.id) : Promise.resolve(null),
+    ]);
 
-    this.setState({
+    return this.setState({
       loading: false,
       user: user || this.state.user,
-      comments: comments || this.state.comments
-    })
+      comments: comments || this.state.comments,
+    });
   }
 
   render() {
@@ -59,7 +63,7 @@ class Post extends Component {
           </div>
         )}
       </article>
-    )
+    );
   }
 }
 
@@ -67,7 +71,27 @@ Post.propTypes = {
   id: PropTypes.number,
   userId: PropTypes.number,
   title: PropTypes.string,
-  body: PropTypes.string
-}
+  body: PropTypes.string,
+  user: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  comments: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
+};
+
+Post.defaultProps = {
+  id: PropTypes.number.isRequired,
+  userId: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.object,
+  ).isRequired,
+};
+
 
 export default Post;

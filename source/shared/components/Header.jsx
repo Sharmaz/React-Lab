@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router'
-import styles from './Header.css'
+import React from 'react';
+import { Link } from 'react-router';
+import styles from './Header.css';
 
 function Header() {
   return (
@@ -18,13 +18,14 @@ function Header() {
           className={styles.link}
           href="http://fapdevs.com/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Fapdevs
         </a>
-      </nav> 
+      </nav>
 
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

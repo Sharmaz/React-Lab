@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { PropTypes } from 'react';
 
 function Layout(props) {
-  return(
-    <html>
+  return (
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <title>{props.title}</title>
@@ -12,14 +12,25 @@ function Layout(props) {
       </head>
       <body>
         <div
-        id="render-target"
-        dangerouslySetInnerHTML={{
-          __html: props.content,
-        }} ></div>
-        <script src="http://localhost:3001/app.js"></script>
+          id="render-target"
+          dangerouslySetInnerHTML={{
+            __html: props.content,
+          }}
+        />
+        <script src="http://localhost:3001/app.js" />
       </body>
     </html>
-  )
+  );
 }
 
-export default Layout
+Layout.propTypes = {
+  title: PropTypes.string,
+  content: PropTypes.string,
+};
+
+Layout.defaultProps = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+};
+
+export default Layout;
