@@ -1,0 +1,30 @@
+{
+  "en": {
+    "error404": "Go back to home",
+    "title": "React Experiment",
+    "title.home": "Home",
+    "title.profile": "Profile of {name}",
+    "profile.field.basic": "Basic info",
+    "profile.field.address": "Address",
+    "header.nav.home": "Home",
+    "header.nav.fapdevs": "Fapdevs",
+    "comment.meta.author": "By: <a href=\"mailto:{email}\" target=\"_blank\">{name}</a>",
+    "post.meta.comments": "{amount} comments",
+    "post.meta.readMore": "Read more...",
+    "loading": "Loading data..." 
+  },
+  "es": {
+    "error404": "Volver a Inicio",
+    "title": "Experimento con React",
+    "title.home": "Inicio",
+    "title.profile": "Perfil de {name}",
+    "profile.field.basic": "Información Básica",
+    "profile.field.address": "Dirección",
+    "header.nav.home": "Inicio",
+    "header.nav.fapdevs": "Fapdevs",
+    "comment.meta.author": "Por: <a href=\"mailto:{email}\" target=\"_blank\">{name}</a>",
+    "post.meta.comments": "{amount} comentarios",
+    "post.meta.readMore": "Leer mas...",
+    "loading": "Cargando datos..."
+  }
+}

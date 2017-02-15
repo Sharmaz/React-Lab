@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { FormattedMessage } from 'react-intl';
+
 import styles from './Header.css';
 
 function Header() {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>
-        Experimento con React
+        <FormattedMessage id="title" />
       </h1>
 
 
       <nav role="navigation" className={styles.navigation}>
         <Link to="/" className={styles.link}>
-          Home
+          <FormattedMessage id="title.home" />
         </Link>
         <a
           className={styles.link}
@@ -20,7 +22,7 @@ function Header() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Fapdevs
+          <FormattedMessage id="header.nav.fapdevs" />
         </a>
       </nav>
 

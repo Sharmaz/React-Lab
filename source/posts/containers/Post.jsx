@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import { FormattedMessage } from 'react-intl';
 
 import api from '../../api';
 import styles from './Post.css';
@@ -58,8 +59,16 @@ class Post extends Component {
               {this.state.user.name}
             </Link>
             <span className={styles.comments}>
-              {this.state.comments.length} comments
+              <FormattedMessage
+                id="post.meta.comments"
+                values={{
+                  amount: this.state.comments.length,
+                }}
+              />
             </span>
+            <Link to={`/post/${this.props.id}`}>
+              <FormattedMessage id="post.meta.readMore" />
+            </Link>
           </div>
         )}
       </article>
