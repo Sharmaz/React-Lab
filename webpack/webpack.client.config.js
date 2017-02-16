@@ -1,10 +1,23 @@
+const fs = require('fs');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
+const nodeModules = fs 
+  .readdirSync('node_modules')
+  .filter(x => ['.bin'].indexOf(x) === -1)
+  .reduce(
+    (modules, module) => Object.assign(modules, { [module]: `commonjs ${module}` }),
+    {}
+  );
+
+const config = {
   entry: './source/client.jsx',
   output: {
     filename: 'app.js',
     path: './built/statics',
+    publicPath: process.env.NODE_ENV === 'production'
+    ? 'https://reactlab-sfs.now.sh'
+    : 'http://localhost:3001/',
   },
   module: {
     preLoaders: [
@@ -26,6 +39,15 @@ module.exports = {
         query: {
           presets: ['es2016', 'es2017', 'react'],
           plugins: ['transform-es2015-modules-commonjs'],
+          env: {
+            production: {
+              plugins: ['transform-regenerator', 'transform-runtime'],
+              presets: ['es2015'],
+            },
+            development: {
+              plugins: ['transform-es2015-modules-commonjs'],
+            },
+          },
         },
       },
       {
@@ -36,9 +58,33 @@ module.exports = {
   },
   target: 'web',
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css'],
+    extensions: ['', '.js', '.jsx', '.css', '.json'],
   },
+  externals: nodeModules,
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      },
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
     new ExtractTextPlugin('../statics/styles.css'),
   ],
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UplifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      mangle: {
+        except: ['$super', '$', 'exports', 'require'],
+      },
+    })
+  );
+}
+
+module.exports = config;
+

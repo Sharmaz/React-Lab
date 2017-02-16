@@ -9,6 +9,10 @@ import Layout from './pages/components/Layout';
 
 import messages from './messages.json';
 
+const domain = process.env.NODE_ENV === 'production'
+  ? 'https://react-lab-sfs.now.sh'
+  : 'http://localhost:3001';
+
 
 function requestHandler(request, response) {
   const locale = request.headers['accept-language'].indexOf('es') >= 0 ? 'es' : 'en';
@@ -46,8 +50,12 @@ function requestHandler(request, response) {
   }
 
   response.write(
-    renderToStaticMarkup(<Layout title="React-Lab" content={html} />),
-    );
+    renderToStaticMarkup(<Layout
+      title="React-Lab"
+      content={html}
+      domain={domain}
+    />),
+  );
   response.end();
 }
 
