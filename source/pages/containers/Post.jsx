@@ -1,10 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import api from '../../api';
 import PostBody from '../../posts/containers/Post';
 import Loading from '../../shared/components/Loading';
 import Comment from '../../comments/components/Comment';
-
-import api from '../../api';
 
 class Post extends Component {
   constructor(props) {
@@ -27,16 +26,16 @@ class Post extends Component {
       post,
       comments,
     ] = await Promise.all([
-      api.posts.getSingle(this.props.params.id),
-      api.posts.getComments(this.props.params.id),
+      api.posts.getSingle(this.props.id),
+      api.posts.getComments(this.props.id),
     ]);
 
     const user = await api.users.getSingle(post.userId);
 
     this.setState({
       loading: false,
-      post,
       user,
+      post,
       comments,
     });
   }
@@ -47,7 +46,7 @@ class Post extends Component {
     }
 
     return (
-      <section name="Post">
+      <section name="post">
         <PostBody
           {...this.state.post}
           user={this.state.user}
@@ -65,16 +64,13 @@ class Post extends Component {
   }
 }
 
-Post.propTypes = {
-  params: PropTypes.shape({
-    id: PropTypes.string,
-  }),
+Post.defaultProps = {
+  id: 1,
 };
 
-Post.defaultProps = {
-  params: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired,
+Post.propTypes = {
+  id: PropTypes.number,
 };
+
 
 export default Post;

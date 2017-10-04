@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import api from '../../api';
 import Post from '../../posts/containers/Post';
 import Loading from '../../shared/components/Loading';
 import styles from './Page.css';
-
 
 class Home extends Component {
   constructor(props) {
@@ -18,13 +18,12 @@ class Home extends Component {
 
     this.handleScroll = this.handleScroll.bind(this);
   }
-
-  async componentDidMount() {
+  componentDidMount() {
     this.initialFetch();
     window.addEventListener('scroll', this.handleScroll);
   }
 
-  componenWillUnmount() {
+  componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
@@ -52,7 +51,6 @@ class Home extends Component {
     return this.setState({ loading: true }, async () => {
       try {
         const posts = await api.posts.getList(this.state.page);
-
         this.setState({
           posts: this.state.posts.concat(posts),
           page: this.state.page + 1,
@@ -67,8 +65,9 @@ class Home extends Component {
 
   render() {
     return (
-      <section name="Home" className={styles.section} >
-        <section className={styles.list} >
+      <section name="Home" className={styles.section}>
+        <FormattedMessage id="title.home" tagName="h2" />
+        <section className={styles.list}>
           {this.state.posts
             .map(post => <Post key={post.id} {...post} />)
           }
@@ -76,7 +75,6 @@ class Home extends Component {
             <Loading />
           )}
         </section>
-
       </section>
     );
   }

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedHTMLMessage } from 'react-intl';
 
 function Comment(props) {
@@ -12,7 +13,6 @@ function Comment(props) {
             name: props.name,
           }}
         />
-        By: <a href={`mailto:${props.email}`}>{props.name}</a>
       </div>
       <p>
         {props.body}
@@ -21,18 +21,18 @@ function Comment(props) {
   );
 }
 
+Comment.defaultProps = {
+  id: 1,
+  email: 'user@domain.com',
+  name: 'Jhon',
+  body: 'Text',
+};
+
 Comment.propTypes = {
   id: PropTypes.number,
   email: PropTypes.string,
   name: PropTypes.string,
   body: PropTypes.string,
-};
-
-Comment.defaultProps = {
-  id: PropTypes.number.isRequired,
-  email: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
 };
 
 export default Comment;

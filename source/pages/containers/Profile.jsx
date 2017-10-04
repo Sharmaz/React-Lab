@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import Post from '../../posts/containers/Post';
@@ -16,7 +17,7 @@ class Profile extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.initialFetch();
   }
 
@@ -25,8 +26,8 @@ class Profile extends Component {
       user,
       posts,
     ] = await Promise.all([
-      api.users.getSingle(this.props.params.id),
-      api.users.getPosts(this.props.params.id),
+      api.users.getSingle(this.props.id),
+      api.users.getPosts(this.props.id),
     ]);
 
     this.setState({
@@ -59,13 +60,13 @@ class Profile extends Component {
           <fieldset>
             <FormattedMessage id="profile.field.address" tagName="legend" />
             <address>
-              {this.state.user.address.street} <br />
-              {this.state.user.address.suite} <br />
-              {this.state.user.address.city} <br />
-              {this.state.user.address.zipcode} <br />
+              {this.state.user.address.street}<br />
+              {this.state.user.address.suite}<br />
+              {this.state.user.address.city}<br />
+              {this.state.user.address.zipcode}<br />
             </address>
           </fieldset>
-          )}
+        )}
         <section>
           {this.state.posts
             .map(post => (
@@ -82,16 +83,12 @@ class Profile extends Component {
   }
 }
 
-Profile.propTypes = {
-  params: PropTypes.shape({
-    id: PropTypes.string,
-  }),
+Profile.defaultProps = {
+  id: 1,
 };
 
-Profile.defaultProps = {
-  params: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired,
+Profile.propTypes = {
+  id: PropTypes.number,
 };
 
 export default Profile;

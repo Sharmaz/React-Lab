@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import api from '../../api';
@@ -21,11 +22,7 @@ class Post extends Component {
   }
 
   async initialFetch() {
-    if (!!this.state.user && !!this.state.comments) {
-      return this.setState({
-        loading: false,
-      });
-    }
+    if (!!this.state.user && !!this.state.comments) return this.setState({ loading: false });
 
     const [
       user,
@@ -82,7 +79,7 @@ Post.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
   user: PropTypes.shape({
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
   }),
   comments: PropTypes.arrayOf(
     PropTypes.object,
@@ -90,16 +87,12 @@ Post.propTypes = {
 };
 
 Post.defaultProps = {
-  id: PropTypes.number.isRequired,
-  userId: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  comments: PropTypes.arrayOf(
-    PropTypes.object,
-  ).isRequired,
+  id: 1,
+  userId: 1,
+  title: 'Titulo',
+  body: 'Texto',
+  user: null,
+  comments: null,
 };
 
 

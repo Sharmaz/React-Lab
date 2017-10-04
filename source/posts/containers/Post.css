@@ -5,15 +5,12 @@
   margin: 2em 0;
   transition: all .3s;
 }
-
 .post:hover {
   transform: scale(1.01);
 }
-
 .title {
   margin: 0;
 }
-
 .title a {
   color: black;
   text-decoration: none;
@@ -28,7 +25,7 @@
   .meta {
     flex-direction: column;
   }
-  .meta *{
-    margin: .25m 0; 
+  .meta * {
+    margin: .25em 0;
   }
 }

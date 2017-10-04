@@ -1,6 +1,11 @@
-.header {
-  background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372)
+* {
+  font-family: sans-serif;
 }
+
+.header {
+  background: linear-gradient(90deg, #1c3643 0, #273b46 25%, #1e5372);
+}
+
 .title {
   color: #fff;
   flex-shrink: 0;
@@ -28,9 +33,10 @@
   transition: all .3s;
   border: 1px solid white;
   border-radius: .25em;
-  padding: .25em .5em;
-  margin: 0 .5em;
+  padding: 0.25em 0.5em;
+  margin: 0 .5em;  
 }
+
 .link:first-of-type {
   margin-left: 0;
 }
@@ -38,7 +44,7 @@
   margin-right: 0;
 }
 .link:hover {
-  background: white;
+  background-color: white;
   color: black;
   transform: scale(1.01);
 }

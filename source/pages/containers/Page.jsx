@@ -1,38 +1,18 @@
 import React from 'react';
-import {
-  Match,
-  Miss,
-} from 'react-router';
-import Error404 from './Error404';
-import Home from './Home';
+import { Route } from 'react-router-dom';
 import Post from './Post';
+import Home from './Home';
 import Profile from './Profile';
 import Header from '../../shared/components/Header';
 
 
-function Pages() {
-  return (
-    <main role="application">
-      <Header />
-
-      <Match
-        pattern="/"
-        exactly
-        component={Home}
-      />
-      <Match
-        pattern="/post/:id"
-        exactly
-        component={Post}
-      />
-      <Match
-        pattern="/user/:id"
-        exactly
-        component={Profile}
-      />
-      <Miss component={Error404} />
-    </main>
-  );
-}
+const Pages = () => (
+  <div>
+    <Header />
+    <Route exact path="/" component={Home} />
+    <Route exact path="/post/:id" component={Post} />
+    <Route exact path="/user/:id" component={Profile} />
+  </div>
+);
 
 export default Pages;
