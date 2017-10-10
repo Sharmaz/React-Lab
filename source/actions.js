@@ -24,8 +24,7 @@ function setUser(user) {
 function postsNextPage() {
   return async (dispatch, getState) => {
     const state = getState();
-    const currentPage = state.posts.page;
-
+    const currentPage = state.get('posts').get('page');
     const posts = await api.posts.getList(currentPage);
 
     dispatch(
@@ -48,9 +47,7 @@ function loadCommentsForPost(postId) {
 function loadUser(userId) {
   return async (dispatch) => {
     const user = await api.users.getSingle(userId);
-    dispatch(
-      setUser(user),
-    );
+    dispatch(setUser(user));
     return user;
   };
 }

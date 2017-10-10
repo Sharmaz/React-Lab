@@ -62,7 +62,8 @@ class Home extends Component {
         <FormattedMessage id="title.home" tagName="h2" />
         <section className={styles.list}>
           {this.props.posts
-            .map(post => <Post key={post.id} {...post} />)
+            .map(post => <Post key={post.get('id')} {...post.toJS()} />)
+            .toArray()
           }
           {this.state.loading && (
             <Loading />
@@ -81,13 +82,13 @@ Home.defaultProps = {
 
 Home.propTypes = {
   actions: PropTypes.objectOf(PropTypes.func),
-  posts: PropTypes.arrayOf(PropTypes.object),
+  posts: PropTypes.objectOf(PropTypes.object),
   page: PropTypes.number,
 };
 
 function mapStateToProps(state) {
   return {
-    posts: state.posts.entities,
+    posts: state.get('posts').get('entities'),
   };
 }
 
